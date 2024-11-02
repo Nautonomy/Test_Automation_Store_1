@@ -1,6 +1,7 @@
 # IMPORTS
 
 from page_objects.base_page import BasePage
+from page_objects.login_page import LoginPage
 
 
 class AccountPage(BasePage):
@@ -16,3 +17,11 @@ class AccountPage(BasePage):
     # INTERACTIONS
     def url_return(self):
         return self.ACCOUNT_PAGE_URL
+
+    # VALIDATIONS
+    def check_if_logged_in(self, driver):
+        super().go_to_url(self.ACCOUNT_PAGE_URL)
+        if driver.current_url == self.url_return():
+            return True
+        else:
+            return False

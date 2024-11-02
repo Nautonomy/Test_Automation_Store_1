@@ -28,6 +28,9 @@ class LoginPage(BasePage):
     registered_password = ""
 
     # INTERACTIONS
+    def url_return(self):
+        return self.LOGIN_PAGE_URL
+
     def go_to_create_account_page(self):
         super().click(self.register_account_button)
 

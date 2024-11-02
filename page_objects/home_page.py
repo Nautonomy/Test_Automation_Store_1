@@ -1,4 +1,6 @@
 # IMPORTS
+import time
+
 from selenium.webdriver.common.by import By
 
 from page_objects.base_page import BasePage
@@ -12,6 +14,10 @@ class HomePage(BasePage):
 
     # LOCATORS
     account_link = (By.LINK_TEXT, 'Login or register')
+    skincare_button = (By.PARTIAL_LINK_TEXT, 'SKINCARE')
+    gift_ideas_button = (By.PARTIAL_LINK_TEXT, 'Gift Ideas & Sets')
+    search_bar = (By.ID, 'filter_keyword')
+    search_button = (By.CLASS_NAME, 'button-in-search')
 
     # INITIALIZER
     def __init__(self, driver):
@@ -25,3 +31,10 @@ class HomePage(BasePage):
     def go_to_login_page(self):
         super().click(self.account_link)
 
+    def go_to_gift_ideas_and_sets(self):
+        super().point(self.skincare_button)
+        time.sleep(1)
+        super().click(self.gift_ideas_button)
+
+    def search_for_night_care_crema(self):
+        super().text_and_hit_enter(self.search_bar, 'night care crema')
